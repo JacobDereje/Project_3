@@ -13,12 +13,16 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
         if (element == null){
             return false;
         }
+
         else{
-            if (size==0){
+            if (start==null){
                 start = new Node<T>(element, null);
                 end = start;
             }
             else{
+                if (end.getData().compareTo(element)>0){
+                    isSorted = false;
+                }
                 end.setNext(new Node<T>(element,null));
                 end = end.getNext();
             }
@@ -29,20 +33,41 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     @Override
     public boolean add(int index, T element) {
-        if (index >= size || index < 0 || element == null){
+        if (index > size || index < 0 || element == null){
             return false;
         }
         else{
-            int count = 0;
-            Node loop = start;
-            while (count < index-1){
-                loop = loop.getNext();
-                count++;
+            if (size == 0){
+                start = new Node<>(element,null);
+                return true;
             }
-            Node<T> temp = loop.getNext();
-            loop.setNext(new Node(element, temp));
-            size++;
-            return true;
+            else if(size == 1){
+                if (index == 0){
+                    start = new Node<>(element, start);
+                    end = start.getNext();
+                    return true;
+                }
+                else{
+                    end = new Node<>(element,null);
+                    return true;
+                }
+
+            }
+            else{
+                int count = 0;
+                Node loop = start;
+                while (count < index-2){
+                    loop = loop.getNext();
+                    count++;
+                }
+                if (loop.getData().compareTo(element) > 0 || loop.getNext().getData().compareTo(element) <0){
+                    isSorted = false;
+                }
+                Node<T> temp = loop.getNext();
+                loop.setNext(new Node(element, temp));
+                size++;
+                return true;
+            }
         }
     }
 
