@@ -1,72 +1,120 @@
 public class LinkedList<T extends Comparable<T>> implements List<T> {
+    private Node<T> start;
+    private Node<T> end;
 
-    private Node<T> head;
+    private int size;//how long is the list
     private boolean isSorted;
-
-    public LinkedList() {
-        head = null;
-        isSorted = true;
+    public LinkedList(){
+        this.size = 0;
+        this.isSorted = true;
     }
-
     @Override
     public boolean add(T element) {
-        if (element == null) return false;
-        Node<T> newNode = new Node<>(element);
-        if (head == null) head = newNode;
-        else {
-            Node<T> temp = head;
-            while (temp.getNext() != null) temp = temp.getNext();
-            temp.setNext(newNode);
+        if (element == null){
+            return false;
         }
-        isSorted = false;
-        return true;
+        else{
+            if (size==0){
+                start = new Node<T>(element, null);
+                end = start;
+            }
+            else{
+                end.setNext(new Node<T>(element,null));
+                end = end.getNext();
+            }
+            size++;
+            return true;
+        }
     }
 
     @Override
     public boolean add(int index, T element) {
-        if (element == null || index >= size()) return false;
-        Node<T> newNode = new Node<>(element);
-        Node<T> temp = head;
-        int i = 0;
-        while (i++ < index) temp = temp.getNext();
-        temp.setNext(newNode);
-        isSorted = false;
-        return true;
+        if (index >= size || index < 0 || element == null){
+            return false;
+        }
+        else{
+            int count = 0;
+            Node loop = start;
+            while (count < index-1){
+                loop = loop.getNext();
+                count++;
+            }
+            Node<T> temp = loop.getNext();
+            loop.setNext(new Node(element, temp));
+            size++;
+            return true;
+        }
     }
 
     @Override
     public void clear() {
-
+        start = null;
+        end = null;
+        this.size = 0;
+        this.isSorted = true;
     }
 
     @Override
     public T get(int index) {
-        return null;
+        if (index>=this.size || index < 0){
+            return null;
+        }
+        else{
+            Node loop = start;
+            for (int i=0;i<index;i++){
+                loop = loop.getNext();
+            }
+            return (T) loop.getData();
+        }
     }
 
     @Override
     public int indexOf(T element) {
-        return 0;
+        if (element == null)return -1;
+        int index = 0;
+        Node<T> loop = start;
+        while (index < size){
+            if (loop.getData().equals(element)){
+                return index;
+            }
+            else {
+                loop = loop.getNext();
+                index++;
+            }
+        }
+        return -1;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        if (this.size == 0)return true;
+        else return false;
     }
 
     @Override
     public int size() {
-        return 0;
+        return this.size;
     }
 
     @Override
     public void sort() {
+        if (isSorted==true) return;
+        else{
 
+        }
     }
 
     @Override
     public T remove(int index) {
-        return null;
+        int count = 0;
+        Node loop = start;
+        while (count < index-1){
+            loop = loop.getNext();
+            count++;
+        }
+        T ret = (T) loop.getNext().getData();
+        loop.setNext(loop.getNext().getNext());
+        return ret;
     }
 
     @Override
@@ -81,7 +129,13 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     @Override
     public void merge(List<T> otherList) {
+        if (otherList==null) return;
+        else{
+            LinkedList<T> other = (LinkedList<T>) otherList;
+            sort();
+            other.sort();
 
+        }
     }
 
     @Override
@@ -91,11 +145,6 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     @Override
     public boolean isSorted() {
-        return false;
+        return isSorted;
     }
 }
-
-
-
-
-
