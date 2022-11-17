@@ -1,12 +1,37 @@
 public class LinkedList<T extends Comparable<T>> implements List<T> {
+
+    private Node<T> head;
+    private boolean isSorted;
+
+    public LinkedList() {
+        head = null;
+        isSorted = true;
+    }
+
     @Override
     public boolean add(T element) {
-        return false;
+        if (element == null) return false;
+        Node<T> newNode = new Node<>(element);
+        if (head == null) head = newNode;
+        else {
+            Node<T> temp = head;
+            while (temp.getNext() != null) temp = temp.getNext();
+            temp.setNext(newNode);
+        }
+        isSorted = false;
+        return true;
     }
 
     @Override
     public boolean add(int index, T element) {
-        return false;
+        if (element == null || index >= size()) return false;
+        Node<T> newNode = new Node<>(element);
+        Node<T> temp = head;
+        int i = 0;
+        while (i++ < index) temp = temp.getNext();
+        temp.setNext(newNode);
+        isSorted = false;
+        return true;
     }
 
     @Override
@@ -69,3 +94,8 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
         return false;
     }
 }
+
+
+
+
+
