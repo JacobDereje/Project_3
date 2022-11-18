@@ -33,7 +33,9 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     @Override
     public boolean add(int index, T element) {
-        if (index > size || index < 0 || element == null){
+        System.out.println(size);
+        System.out.println(index);
+        if (index >= size || index < 0 || element == null){
             return false;
         }
         else{
@@ -41,31 +43,26 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
                 start = new Node<>(element,null);
                 return true;
             }
-            else if(size == 1){
-                if (index == 0){
-                    start = new Node<>(element, start);
-                    end = start.getNext();
+            else {
+                if (index == 0) {
+                    Node temp = start;
+                    start = new Node(element, temp);
                     return true;
                 }
-                else{
-                    end = new Node<>(element,null);
-                    return true;
-                }
-
-            }
-            else{
-                int count = 0;
-                Node loop = start;
-                while (count < index-2){
-                    loop = loop.getNext();
+                int count = 1;
+                Node t1 = start;
+                Node t2 = start.getNext();
+                while (count < index) {
+                    t1 = t1.getNext();
+                    t2 = t2.getNext();
                     count++;
                 }
-                if (loop.getData().compareTo(element) > 0 || loop.getNext().getData().compareTo(element) <0){
+                Node temp = new Node(element,t2);
+                t1.setNext(temp);
+                size++;
+                if (t1.getData().compareTo(element)>0 || t2.getData().compareTo(element) < 0){
                     isSorted = false;
                 }
-                Node<T> temp = loop.getNext();
-                loop.setNext(new Node(element, temp));
-                size++;
                 return true;
             }
         }
@@ -112,8 +109,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     @Override
     public boolean isEmpty() {
-        if (this.size == 0)return true;
-        else return false;
+        return (this.size==0);
     }
 
     @Override
@@ -149,7 +145,15 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     @Override
     public void reverse() {
-
+        Node newList = null;
+        Node ptr = start;
+        while (ptr!=null){
+            Node temp = ptr;
+            ptr = ptr.getNext();
+            temp.setNext(newList);
+            newList = temp;
+        }
+        start.setNext(newList);
     }
 
     @Override
