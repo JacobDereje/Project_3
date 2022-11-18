@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1eb28958-2b51-4128-b444-c28dc072b898" name="Changes" comment="some other shit">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LinkedList.java" afterDir="false" />
+    <list default="true" id="1eb28958-2b51-4128-b444-c28dc072b898" name="Changes" comment="try to work some shit, still dont work">
+      <change beforePath="$PROJECT_DIR$/src/ArrayList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ArrayList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LinkedListTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LinkedListTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,7 +40,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.LinkedListTest.sortTest">
+  <component name="RunManager">
     <configuration name="LinkedListTest.addTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Project_3" />
       <option name="PACKAGE_NAME" value="" />
@@ -110,7 +109,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1667959843106</updated>
-      <workItem from="1668611974959" duration="32241000" />
+      <workItem from="1668611974959" duration="32657000" />
     </task>
     <task id="LOCAL-00001" summary="created prelim array, linkedlist">
       <created>1668612177536</created>
@@ -147,7 +146,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668753243210</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="try to work some shit, still dont work">
+      <created>1668793427405</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1668793427405</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -169,7 +175,8 @@
     <MESSAGE value="prelim code" />
     <MESSAGE value="add" />
     <MESSAGE value="some other shit" />
-    <option name="LAST_COMMIT_MESSAGE" value="some other shit" />
+    <MESSAGE value="try to work some shit, still dont work" />
+    <option name="LAST_COMMIT_MESSAGE" value="try to work some shit, still dont work" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

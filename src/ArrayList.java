@@ -161,7 +161,16 @@ public class ArrayList<T extends Comparable<T>> implements List<T>, Cloneable {
 
     @Override
     public void pairSwap() {
+        for (int i=0;i<size;i=i+2){
+            if (i+1 == size)return;
+            else{
+                T temp;
+                temp = list[i];
+                list[i] = list[i + 1];
+                list[i + 1] = temp;
+            }
 
+        }
     }
 
     public String toString() {
