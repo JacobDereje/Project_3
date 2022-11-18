@@ -121,8 +121,27 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
     public void sort() {
         if (isSorted==true) return;
         else{
-
+            Node front = start;
+            Node temp;
+            Node compare;
+            while (front.getNext()!=null){
+                compare = front.getNext();
+                temp = front;
+                while (compare!=null) {
+                    if (temp.getData().compareTo(compare.getData()) > 0) {
+                        temp = compare;
+                    }
+                    compare = compare.getNext();
                 }
+                Node beforeTemp = front;
+                while(beforeTemp.getNext()!=temp){
+                    beforeTemp = beforeTemp.getNext();
+                }
+                Node afterTemp = temp.getNext();
+                temp.setNext(front);
+                beforeTemp.setNext(afterTemp);
+            }
+        }
 
 
     }
