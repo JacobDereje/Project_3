@@ -1,29 +1,33 @@
 public class LinkedList<T extends Comparable<T>> implements List<T> {
     private Node<T> start;
     private Node<T> end;
-
     private int size;//how long is the list
     private boolean isSorted;
     public LinkedList(){
+        this.start = null;
+        this.end = null;
         this.size = 0;
         this.isSorted = true;
     }
     @Override
     public boolean add(T element) {
+        //return false if the element being added is null
         if (element == null){
             return false;
         }
-
         else{
+            //case 1: list is empty
             if (start==null){
-                start = new Node<T>(element, null);
+                start = new Node<T>(element);
                 end = start;
             }
+            //case2: list not empty
             else{
+                //check if the new element breaks the sorted list
                 if (end.getData().compareTo(element)>0){
                     isSorted = false;
                 }
-                end.setNext(new Node<T>(element,null));
+                end.setNext(new Node<T>(element));
                 end = end.getNext();
             }
             size++;
@@ -33,38 +37,37 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     @Override
     public boolean add(int index, T element) {
-        System.out.println(size);
-        System.out.println(index);
+        //check if index is out of bound or element is null
         if (index >= size || index < 0 || element == null){
             return false;
         }
         else{
-            if (size == 0){
-                start = new Node<>(element,null);
+            //case:add to the start of the list
+            if (index == 0) {
+                start = new Node<T>(element, start);
+                if (start.getNext().getData().compareTo(element)<0) isSorted = false;
                 return true;
             }
+            //case: add to any index not at the start
             else {
-                if (index == 0) {
-                    Node temp = start;
-                    start = new Node(element, temp);
-                    return true;
-                }
-                int count = 1;
-                Node t1 = start;
-                Node t2 = start.getNext();
+                int count = 0;
+                Node<T> trail = start;
+                Node<T> ahead = trail;
                 while (count < index) {
-                    t1 = t1.getNext();
-                    t2 = t2.getNext();
+                    trail = ahead;
+                    ahead = ahead.getNext();
                     count++;
                 }
-                Node temp = new Node(element,t2);
-                t1.setNext(temp);
+                Node<T> addNode = new Node(element);
+                trail.setNext(addNode);
+                addNode.setNext(ahead);
                 size++;
-                if (t1.getData().compareTo(element)>0 || t2.getData().compareTo(element) < 0){
+                if (trail.getData().compareTo(element) > 0 || ahead.getData().compareTo(element) < 0) {
                     isSorted = false;
                 }
                 return true;
             }
+
         }
     }
 
