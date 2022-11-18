@@ -122,20 +122,34 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
         if (isSorted==true) return;
         else{
 
-        }
+                }
+
+
     }
 
     @Override
     public T remove(int index) {
-        int count = 0;
-        Node loop = start;
-        while (count < index-1){
-            loop = loop.getNext();
-            count++;
+        if (index>=size || index <0){
+            return null;
         }
-        T ret = (T) loop.getNext().getData();
-        loop.setNext(loop.getNext().getNext());
-        return ret;
+        else {
+            int count = 0;
+            Node loop = start;
+            while (count < index - 1) {
+                loop = loop.getNext();
+                count++;
+            }
+            if (loop.getNext().getNext()==null) {
+                T ret = (T) loop.getNext().getData();
+                loop.setNext(null);
+                return ret;
+            }
+            else{
+                T ret = (T) loop.getNext().getData();
+                loop.setNext(loop.getNext().getNext());
+                return ret;
+            }
+        }
     }
 
     @Override
