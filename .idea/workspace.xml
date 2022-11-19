@@ -184,7 +184,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668816722564</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="files">
+      <created>1668819551679</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1668819551679</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -211,7 +218,8 @@
     <MESSAGE value="add rework" />
     <MESSAGE value="save work" />
     <MESSAGE value="everything except merge" />
-    <option name="LAST_COMMIT_MESSAGE" value="everything except merge" />
+    <MESSAGE value="files" />
+    <option name="LAST_COMMIT_MESSAGE" value="files" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

@@ -12,6 +12,10 @@ public class ArrayList<T extends Comparable<T>> implements List<T>, Cloneable {
     }
 
     @Override
+    /*
+     * Adds an element to end of the list. If element is null,
+     * it wont add it and return false.
+     */
     public boolean add(T element) {
         if (element == null)
             return false;
@@ -27,6 +31,9 @@ public class ArrayList<T extends Comparable<T>> implements List<T>, Cloneable {
     }
 
     @Override
+    /*
+     * Adds an element at specific index. if the element is null it returns false while updating isSorted
+     */
     public boolean add(int index, T element) {
         if (index < size && index >= 0 && element != null) {
             if (size == list.length)
@@ -47,12 +54,19 @@ public class ArrayList<T extends Comparable<T>> implements List<T>, Cloneable {
     }
 
     @Override
+    /**
+     * Remove all elements from the list and updates isSorted accordingly.
+     */
     public void clear() {
         size = 0;
         list = (T[]) new Comparable[10];
     }
 
     @Override
+    /**
+     * This method returns the first index of element in the list. If element
+     *      * is null or not found in the list, it returns -1.
+     */
     public T get(int index) {
         if (index < size && index >= 0)
             return list[index];
@@ -61,6 +75,9 @@ public class ArrayList<T extends Comparable<T>> implements List<T>, Cloneable {
     }
 
     @Override
+    /**
+     * returns true if the list is empty
+     */
     public int indexOf(T element) {
         int i = 0;
         i = 0;
@@ -84,6 +101,10 @@ public class ArrayList<T extends Comparable<T>> implements List<T>, Cloneable {
     }
 
     @Override
+
+    /**
+     * removes whatever is at "x" index in a list and returns it. if the index is out-of-bounds it will return null
+     */
     public void sort() {
         for (int i = 0; i < size() - 1; i++) {
             T minimum = get(i);
@@ -117,6 +138,7 @@ public class ArrayList<T extends Comparable<T>> implements List<T>, Cloneable {
     }
 
     @Override
+
     public T remove(int index) {
         if (index >= 0 && index <= size) {
             if (index < size) {
@@ -138,6 +160,9 @@ public class ArrayList<T extends Comparable<T>> implements List<T>, Cloneable {
     }
 
     @Override
+    /**
+     * removes all of the elements within a list that are not equal to element
+     */
     public void equalTo(T element) {
         if (element == null) {
         } else for (int i = 0; i < size(); i++) {
@@ -150,6 +175,9 @@ public class ArrayList<T extends Comparable<T>> implements List<T>, Cloneable {
     }
 
     @Override
+    /**
+     * reverses the list in a way that it ends up in place
+     */
     public void reverse() {
         ArrayList<T> reverse = new ArrayList<>();
         IntStream.iterate(size - 1, i -> i >= 0, i -> i - 1).mapToObj(this::get).forEachOrdered(reverse::add);
@@ -158,6 +186,9 @@ public class ArrayList<T extends Comparable<T>> implements List<T>, Cloneable {
     }
 
     @Override
+    /**
+     * merges two lists into a single sequential list
+     */
     public void merge(List<T> otherList) {
         if(otherList != null){
             ArrayList<T> other = (ArrayList<T>) otherList;
@@ -195,6 +226,9 @@ public class ArrayList<T extends Comparable<T>> implements List<T>, Cloneable {
     }
 
     @Override
+    /**
+     * swaps elements within two lists
+     */
     public void pairSwap() {
         for (int i=0;i<size;i=i+2){
             if (i + 1 != size) {
