@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1eb28958-2b51-4128-b444-c28dc072b898" name="Changes" comment="try to work some shit, still dont work">
+    <list default="true" id="1eb28958-2b51-4128-b444-c28dc072b898" name="Changes" comment="everything except merge">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ArrayList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ArrayList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LinkedListTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LinkedListTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LinkedList.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,11 +94,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.LinkedListTest.sortTest" />
         <item itemvalue="JUnit.LinkedListTest.indexOfTest" />
-        <item itemvalue="JUnit.LinkedListTest.removeTest" />
-        <item itemvalue="JUnit.LinkedListTest.addTest" />
         <item itemvalue="JUnit.LinkedListTest.getTest" />
+        <item itemvalue="JUnit.LinkedListTest.addTest" />
+        <item itemvalue="JUnit.LinkedListTest.sortTest" />
+        <item itemvalue="JUnit.LinkedListTest.removeTest" />
       </list>
     </recent_temporary>
   </component>
@@ -109,7 +110,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1667959843106</updated>
-      <workItem from="1668611974959" duration="32657000" />
+      <workItem from="1668611974959" duration="39636000" />
+      <workItem from="1668811458116" duration="6095000" />
     </task>
     <task id="LOCAL-00001" summary="created prelim array, linkedlist">
       <created>1668612177536</created>
@@ -153,7 +155,35 @@
       <option name="project" value="LOCAL" />
       <updated>1668793427405</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="wrote pair swap">
+      <created>1668793926813</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1668793926813</updated>
+    </task>
+    <task id="LOCAL-00008" summary="add rework">
+      <created>1668807542085</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1668807542085</updated>
+    </task>
+    <task id="LOCAL-00009" summary="save work">
+      <created>1668808909499</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1668808909499</updated>
+    </task>
+    <task id="LOCAL-00010" summary="everything except merge">
+      <created>1668816722564</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1668816722564</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,18 +206,13 @@
     <MESSAGE value="add" />
     <MESSAGE value="some other shit" />
     <MESSAGE value="try to work some shit, still dont work" />
-    <option name="LAST_COMMIT_MESSAGE" value="try to work some shit, still dont work" />
+    <MESSAGE value="wrote pair swap" />
+    <MESSAGE value="add rework" />
+    <MESSAGE value="save work" />
+    <MESSAGE value="everything except merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="everything except merge" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/LinkedListTest.java</url>
-          <line>79</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="LinkedList" memberName="size" />
