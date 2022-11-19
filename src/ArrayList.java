@@ -216,12 +216,13 @@ public class ArrayList<T extends Comparable<T>> implements List<T>, Cloneable {
 
                     }
                     if (other.list[j] ==  null && other.list[i] != null){
-                        newArray[k] = other.list[i];
+                        newArray[k] = this.list[i];
                         i++;
                     }
                 }
             }
             this.list = newArray;
+            size = size + other.size;
             this.isSorted = true;
         }
     }
