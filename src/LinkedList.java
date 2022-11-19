@@ -299,43 +299,51 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
         sort();
         other.sort();
         size = 0;
-        Node<T> ptr1 = start;
-        Node<T> ptr2 = other.start;
+        Node<T> ptrSelf = start;
+        Node<T> ptrOther = other.start;
         Node<T> temp = null;
         Node<T> ptr = temp;
-        if (ptr2 == null) {
+        //check if one of the list is empty
+        if (ptrOther == null) {
             return;
         }
-        if (ptr1 == null) {
+        if (ptrSelf == null) {
             this.start = other.start;
             return;
         }
-        while (ptr1 != null || ptr2 != null) {
-            if (ptr1 == null) {
-                ptr.setNext(ptr2);
+        while (ptrSelf != null || ptrOther != null) {
+            // check one of the lists is "done"
+            if (ptrSelf == null) {
+                ptr.setNext(ptrOther);
                 break;
-            } else if (ptr2 == null) {
-                ptr.setNext(ptr1);
+            }
+            else if (ptrOther == null) {
+                ptr.setNext(ptrSelf);
                 break;
-            } else {
-                if (ptr1.getData().compareTo(ptr2.getData()) < 0) {
+            }
+            else {
+                //compare the data of both the ptr is point to and see which should be first
+                if (ptrSelf.getData().compareTo(ptrOther.getData()) < 0) {
                     if (temp == null) {
-                        temp = ptr1;
+                        temp = ptrSelf;
                         ptr = temp;
-                    } else {
-                        ptr.setNext(ptr1);
+                    }
+                    else {
+                        ptr.setNext(ptrSelf);
                         ptr = ptr.getNext();
                     }
-                    ptr1 = ptr1.getNext();
-                } else {
+                    ptrSelf = ptrSelf.getNext();
+                }
+                else{
                     if (temp == null) {
-                        temp = ptr2;
+                        temp = ptrOther;
                         ptr = temp;
-                    } else {
-                        ptr.setNext(ptr2);
+                    }
+                    else {
+                        ptr.setNext(ptrOther);
                         ptr = ptr.getNext();
                     }
-                    ptr2 = ptr2.getNext();
+                    ptrOther = ptrOther.getNext();
                 }
             }
         }
