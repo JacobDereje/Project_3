@@ -1,3 +1,5 @@
+import java.util.stream.IntStream;
+
 public class ArrayList<T extends Comparable<T>> implements List<T>, Cloneable {
     private T[] list;
     private int size;
@@ -26,18 +28,22 @@ public class ArrayList<T extends Comparable<T>> implements List<T>, Cloneable {
 
     @Override
     public boolean add(int index, T element) {
-        if(index >= size || index < 0 || element == null)
-            return false;
-        if (size == list.length)
-            checkBound();
-        for (int i = size - 1; i >= index; i--) {
-            list[i + 1] = list[i];
-        }
-        list[index] = element;
-        size++;
-        isSorted = checkSorted();
+        if (index < size && index >= 0 && element != null) {
+            if (size == list.length)
+                checkBound();
+            int i = size - 1;
+            while (i >= index) {
+                list[i + 1] = list[i];
+                i--;
+            }
+            list[index] = element;
+            size++;
+            isSorted = checkSorted();
 
-        return true;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
@@ -80,11 +86,13 @@ public class ArrayList<T extends Comparable<T>> implements List<T>, Cloneable {
         for (int i = 0; i < size() - 1; i++) {
             T min = get(i);
             int minInd = i;
-            for (int j = i + 1; j < size(); j++) {
+            int j = i + 1;
+            while (j < size()) {
                 if (min.compareTo(get(j)) > 0) {
                     min = get(j);
                     minInd = j;
                 }
+                j += 1;
             }
             if (minInd != i) {
                 list[minInd] = get(i);
@@ -101,27 +109,29 @@ public class ArrayList<T extends Comparable<T>> implements List<T>, Cloneable {
             if (get(i).compareTo(get(i + 1)) > 0) {
                 check = false;
             }
-        }if (check)
-            return true;
-        else
-            return false;
+        }
+        return check;
 
     }
 
     @Override
     public T remove(int index) {
-        if (index < 0 || index > size)
-            return  null;
-        if (index < size) {
-            T item = list[index];
-            for (int i = index + 1; i < size; i++) {
-                list[i - 1] = list[i];
+        if (index >= 0 && index <= size) {
+            if (index < size) {
+                T item = list[index];
+                for (int i = index + 1; i < size; i++) {
+                    list[i - 1] = list[i];
+                }
+                size -= 1;
+                isSorted = checkSorted();
+
+
+                return item;
             }
-            size--;
-            isSorted = checkSorted();
-            return item;
+            return null;
+        } else {
+            return null;
         }
-        return null;
 
     }
 
@@ -140,23 +150,47 @@ public class ArrayList<T extends Comparable<T>> implements List<T>, Cloneable {
 
     @Override
     public void reverse() {
-        ArrayList<T> reverselist = new ArrayList<>();
-        for (int i = size - 1; i >= 0; i--) {
-            reverselist.add(get(i));
-        }
-        list = reverselist.list;
+        ArrayList<T> reverse = new ArrayList<>();
+        IntStream.iterate(size - 1, i -> i >= 0, i -> i - 1).mapToObj(this::get).forEachOrdered(reverse::add);
+        list = reverse.list;
         isSorted = checkSorted();
     }
 
     @Override
     public void merge(List<T> otherList) {
-        ArrayList<T> other = (ArrayList<T>) otherList;
-        sort();
-        other.sort();
-        T[] RealSize = (T[]) new Comparable[size() + other.size()];
-        for (int i = 0; i < otherList.size(); i++)
-            add(otherList.get(i));
-        isSorted = checkSorted();
+        if(otherList != null){
+            ArrayList<T> other = (ArrayList<T>) otherList;
+            this.sort();
+            other.sort();
+            T[] newArray = (T[])new Comparable[this.list.length+other.list.length];
+            int i = 0;
+            int j = 0;
+            for (int k=0; k < newArray.length; k++){
+                if (this.list[i] !=null && other.list [j] != null){
+                    if(this.list[i].compareTo(other.list[j]) <= 0){
+                        newArray[k] = this.list[i];
+                        i++;
+                    }
+                    else if (this.list[i].compareTo(other.list[j])>0){
+                        newArray[k] = other.list[j];
+                        j++;
+                    }
+
+                }else{
+                    if (this.list[i] == null && other.list [j] != null){
+                        newArray[k] = other.list[j];
+                        j++;
+
+                    }
+                    if (other.list[j] ==  null && other.list[i] != null){
+                        newArray[k] = other.list[i];
+                        i++;
+                    }
+                }
+            }
+            this.list = newArray;
+            this.isSorted = true;
+        }
     }
 
     @Override
