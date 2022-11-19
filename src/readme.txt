@@ -4,7 +4,9 @@ Brandon Cheng (chen7381)
 Assumptions:
 There has to be a test file that can run those classes because there is not a main method in them.
 
-Bug: The add method in the LinkedList wouldn't work
+Bug:
+The add method in the LinkedList doesn't work.
+The merge method in ArrayList doesn't work, affecting the Sorted test result too.
 
 Contributions:
 
