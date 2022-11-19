@@ -6,9 +6,9 @@ public class ArrayList<T extends Comparable<T>> implements List<T>, Cloneable {
     private boolean isSorted;
 
     public ArrayList() {
-        list = (T[]) new Comparable[2];
         size = 0;
         isSorted = true;
+        list = (T[]) new Comparable[2];
     }
 
     @Override
@@ -22,7 +22,7 @@ public class ArrayList<T extends Comparable<T>> implements List<T>, Cloneable {
         if (size == 1)
             isSorted = true;
         else
-            isSorted = checkSorted();
+            isSorted = checkSort();
         return true;
     }
 
@@ -34,11 +34,11 @@ public class ArrayList<T extends Comparable<T>> implements List<T>, Cloneable {
             int i = size - 1;
             while (i >= index) {
                 list[i + 1] = list[i];
-                i--;
+                i-=1;
             }
             list[index] = element;
             size++;
-            isSorted = checkSorted();
+            isSorted = checkSort();
 
             return true;
         } else {
@@ -48,8 +48,8 @@ public class ArrayList<T extends Comparable<T>> implements List<T>, Cloneable {
 
     @Override
     public void clear() {
-        list = (T[]) new Comparable[10];
         size = 0;
+        list = (T[]) new Comparable[10];
     }
 
     @Override
@@ -63,10 +63,12 @@ public class ArrayList<T extends Comparable<T>> implements List<T>, Cloneable {
     @Override
     public int indexOf(T element) {
         int i = 0;
-        for (i = 0; i < size; i++) {
+        i = 0;
+        while (i < size) {
             if (list[i].equals(element)) {
                 return i;
             }
+            i+=1;
         }
         return -1;
     }
@@ -84,31 +86,31 @@ public class ArrayList<T extends Comparable<T>> implements List<T>, Cloneable {
     @Override
     public void sort() {
         for (int i = 0; i < size() - 1; i++) {
-            T min = get(i);
-            int minInd = i;
+            T minimum = get(i);
+            int index = i;
             int j = i + 1;
             while (j < size()) {
-                if (min.compareTo(get(j)) > 0) {
-                    min = get(j);
-                    minInd = j;
+                if (minimum.compareTo(get(j)) > 0) {
+                    minimum = get(j);
+                    index = j;
                 }
                 j += 1;
             }
-            if (minInd != i) {
-                list[minInd] = get(i);
-                list[i] = min;
+            if (index != i) {
+                list[index] = get(i);
+                list[i] = minimum;
             }
         }
         isSorted = true;
     }
 
 
-    private boolean checkSorted() {
+    private boolean checkSort() {
         boolean check = true;
-        for (int i = 0; i < size - 1; i++) {
-            if (get(i).compareTo(get(i + 1)) > 0) {
-                check = false;
-            }
+        int i = 0;
+        while (i < size - 1) {
+            if (get(i).compareTo(get(i + 1)) > 0) check = false;
+            i++;
         }
         return check;
 
@@ -123,7 +125,7 @@ public class ArrayList<T extends Comparable<T>> implements List<T>, Cloneable {
                     list[i - 1] = list[i];
                 }
                 size -= 1;
-                isSorted = checkSorted();
+                isSorted = checkSort();
 
 
                 return item;
@@ -137,12 +139,11 @@ public class ArrayList<T extends Comparable<T>> implements List<T>, Cloneable {
 
     @Override
     public void equalTo(T element) {
-        if (element != null) {
-            for (int i = 0; i < size(); i++) {
-                if (!(get(i).equals(element))) {
-                    remove(i);
-                    i--;
-                }
+        if (element == null) {
+        } else for (int i = 0; i < size(); i++) {
+            if (!(get(i).equals(element))) {
+                remove(i);
+                i -= 1;
             }
         }
         isSorted = true;
@@ -153,7 +154,7 @@ public class ArrayList<T extends Comparable<T>> implements List<T>, Cloneable {
         ArrayList<T> reverse = new ArrayList<>();
         IntStream.iterate(size - 1, i -> i >= 0, i -> i - 1).mapToObj(this::get).forEachOrdered(reverse::add);
         list = reverse.list;
-        isSorted = checkSorted();
+        isSorted = checkSort();
     }
 
     @Override
@@ -196,26 +197,23 @@ public class ArrayList<T extends Comparable<T>> implements List<T>, Cloneable {
     @Override
     public void pairSwap() {
         for (int i=0;i<size;i=i+2){
-            if (i+1 == size)return;
-            else{
-                T temp;
-                temp = list[i];
+            if (i + 1 != size) {
+                T temp_val;
+                temp_val = list[i];
                 list[i] = list[i + 1];
-                list[i + 1] = temp;
-            }
+                list[i + 1] = temp_val;
+            } else return;
 
         }
     }
 
     public String toString() {
 
-        String s = "";
+        StringBuilder s = new StringBuilder();
 
-        for (int i = 0; i < size(); i++) {
-            s = s + get(i) + "\n";
-        }
+        for (int i = 0; i < size(); i++) s.append(get(i)).append("\n");
 
-        return s;
+        return s.toString();
 
     }
 
@@ -225,9 +223,9 @@ public class ArrayList<T extends Comparable<T>> implements List<T>, Cloneable {
     }
 
     private void checkBound() {
-        int temp = list.length;
-        temp = temp * 2;
-        T[] newList = (T[]) new Comparable[temp];
+        int val = list.length;
+        val = val * 2;
+        T[] newList = (T[]) new Comparable[val];
         if (size >= 0) System.arraycopy(list, 0, newList, 0, list.length);
 
         list = newList;
