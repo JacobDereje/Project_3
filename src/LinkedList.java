@@ -210,12 +210,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
             isSorted = true;
         }
         else {
-            while (loop != null && loop.getNext() != null) {
-                if (loop.getData().compareTo(loop.getNext().getData()) > 0) {
-                    isSorted = false;
-                }
-                loop = loop.getNext();
-            }
+            checkSorted();
         }
         return target;
     }
@@ -294,20 +289,12 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
         }
         //check whether the reversed list was sorted if the list was not sorted previously
         else {
-            n1 = start;
-            while (n1 != null && n1.getNext() != null) {
-                if (n1.getData().compareTo(n1.getNext().getData()) > 0) {
-                    isSorted = false;
-                    return;
-                }
-                n1 = n1.getNext();
-            }
-            isSorted = true;
+            checkSorted();
         }
     }
 
     public void merge(List<T> otherList) {
-        LinkedList<T> other = (LinkedList<T>) otherList;
+        LinkedList<T> other= (LinkedList<T>) otherList;
         sort();
         other.sort();
         size = 0;
@@ -366,15 +353,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
             ptr = next.getNext();
         }
         //check if sorted
-        ptr = start;
-        while (ptr != null && ptr.getNext() != null) {
-            if (ptr.getData().compareTo(ptr.getNext().getData()) > 0) {
-                isSorted = false;
-                return;
-            }
-            ptr = ptr.getNext();
-        }
-        isSorted = true;
+        checkSorted();
     }
 
 
@@ -390,5 +369,18 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     public boolean isSorted() {
         return isSorted;
+    }
+
+    public void checkSorted(){
+        Node<T> ptr;
+        ptr = start;
+        while (ptr != null && ptr.getNext() != null) {
+            if (ptr.getData().compareTo(ptr.getNext().getData()) > 0) {
+                isSorted = false;
+                return;
+            }
+            ptr = ptr.getNext();
+        }
+        isSorted = true;
     }
 }
