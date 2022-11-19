@@ -1,3 +1,4 @@
+//written by derej006,chen7381
 public class LinkedList<T extends Comparable<T>> implements List<T> {
     private Node<T> start;//head of the list
     private Node<T> end;//end of the list

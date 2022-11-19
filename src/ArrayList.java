@@ -1,4 +1,5 @@
 import java.util.stream.IntStream;
+//written by derej006,chen7381
 
 public class ArrayList<T extends Comparable<T>> implements List<T>, Cloneable {
     private T[] list;
